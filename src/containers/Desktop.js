@@ -2,6 +2,7 @@ import React from "react";
 import {ResizerBox} from "../styled/Desktop";
 import {Widget} from "./Widget";
 import {useSelector} from "react-redux";
+import {SqlWidget} from "../components/SqlWidget";
 
 export const Desktop = () => {
   const widgetState = useSelector(state => state.desktop.widgetState)
@@ -12,9 +13,16 @@ export const Desktop = () => {
       {widgetState
         .filter(node => node.desktopPosition === currentDesktop)
         .map(widget => {
-        return (
-          <Widget key={widget.widgetId} widget={widget}/>
-        )
+          if (widget.type === 'sql') {
+            return (
+              <Widget key={widget.widgetId} widget={widget}>
+                <SqlWidget data={widget.data} maxHeight={widget.height}/>
+              </Widget>
+            )
+          } else {
+            return <Widget key={widget.widgetId} widget={widget}/>
+          }
+
       })}
     </ResizerBox>
   )

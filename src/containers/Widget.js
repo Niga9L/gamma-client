@@ -26,6 +26,7 @@ export const Widget = props => {
         width: full ? window.innerWidth - 20 : widget.width,
         height: full ? window.innerHeight - 20 : widget.height,
       }}
+      cancel='.widgetContent'
       minWidth={550}
       minHeight={350}
       onDrag={() => dispatch(changeZIndex(widget.widgetId))}
@@ -34,7 +35,11 @@ export const Widget = props => {
         dispatch(changePosition(widget.widgetId, newPosition))
       }}
       disableDragging={full || props.preview}
-      onResizeStop={(e, direction, ref, delta, position) => {
+      // onResizeStop={(e, direction, ref, delta, position) => {
+      //   const newSize = {width: ref.style.width, height: ref.style.height}
+      //   dispatch(changeSize(widget.widgetId, newSize, position))
+      // }}
+      onResize={(e, direction, ref, delta, position) => {
         const newSize = {width: ref.style.width, height: ref.style.height}
         dispatch(changeSize(widget.widgetId, newSize, position))
       }}

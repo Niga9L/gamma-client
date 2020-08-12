@@ -1,11 +1,19 @@
 import React from "react";
-import {PreviewBox, RnDHeader, RnDIcon, RnDropMenu, RnDTitle, RnDTools} from "../styled/Desktop"
+import {
+  OverflowBox,
+  PreviewBox,
+  RnDHeader,
+  RnDIcon,
+  RnDropMenu,
+  RnDTitle,
+  RnDTools,
+  WidgetContent
+} from "../styled/Desktop"
+import uniqid from 'uniqid'
 
 export const PreviewWidget = props => {
   const data = props.data
-  const columns = Object.keys(data[0]).length
-  console.log(columns)
-  console.log(data)
+
   return (
     <PreviewBox>
       <RnDHeader>
@@ -35,7 +43,30 @@ export const PreviewWidget = props => {
           </RnDIcon>
         </RnDTools>
       </RnDHeader>
+      <WidgetContent>
+        <OverflowBox maxHeight={props.maxHeight}>
+        <table>
 
+            <thead>
+              <tr>
+                  {Object.keys(data[0]).map((node, idx) => <th key={idx}>{node}</th>)}
+              </tr>
+            </thead>
+            <tbody>
+
+                {data.map(node => {
+                  return (
+                    <tr key={uniqid()}>
+                      {Object.keys(node).map((td) => <td key={uniqid()}>{node[td]}</td>)}
+                    </tr>
+                  )
+                })}
+
+            </tbody>
+
+        </table>
+        </OverflowBox>
+      </WidgetContent>
     </PreviewBox>
   )
 }

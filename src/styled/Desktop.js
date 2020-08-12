@@ -74,6 +74,48 @@ export const WidgetType = styled.button`
 
 `
 
+export const OverflowBox = styled.div`
+  overflow: auto;
+  width: 100%;
+  height: ${({maxHeight}) => parseInt(maxHeight, 10) - 70 + 'px'}}
+`
+
+export const WidgetContent = styled.div`
+  text-overflow: ellipsis; 
+  white-space: nowrap;
+  overflow: hidden;
+  & table {
+    width: 100%;
+    border-spacing: 0;
+    padding: 0 15px;
+  }
+  
+  & td {
+    text-overflow: ellipsis; 
+  white-space: nowrap;
+  overflow: hidden;
+    max-width: 100px;
+    font-weight: 400;
+    padding: 10px 10px 10px 0;
+    color: rgb(105,105,101);
+    border-bottom: 1px solid #eee;
+  }
+  
+  & th {
+  text-overflow: ellipsis; 
+  white-space: nowrap;
+  overflow: hidden;
+     max-width: 100px;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: left;
+    padding-bottom: 5px;
+    padding-right: 10px ;
+    color: rgb(105,105,101);
+    border-bottom: 2px solid #eee;
+  }
+`
+
 export const WidgetTypeBox = styled.div`
   display: flex;
   justify-content: space-between;
